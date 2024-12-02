@@ -1,59 +1,138 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class PlayerScript : MonoBehaviour
 {
     private float MoveSpeed = 0.02f;
     public GameObject bullet;
-    float bulletTimer = 0.0f;
+    public GameObject Lazer;
+    public EnemyScript enemy;
+    float[] bulletTimer = new float[3];
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    private Animator animator;
+    public int playerHP;// 敵の最大HP
+    private int MaxHp;// 敵の現在のHP
+    public Slider hpSlider;//HPバー（スライダー）
+    private int ShotChenge = 0;//射撃パターン追加
+
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        animator = GetComponent<Animator>();
+        hpSlider.value = (float)playerHP;//HPバーの最初の値（最大HP）を設定
+        MaxHp = playerHP; // 現在のHPを最大HPに設定
+        for (int i = 0; i < 3; i++)
+        {
+            bulletTimer[i] = 0.0f;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.RightArrow)&& transform.position.x <= 10)
+        if (gameManagerScript.IsGameOver() == true)
         {
-            transform.position += new Vector3(MoveSpeed, 0, 0);
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow)&& transform.position.x >= -10)
-        {
-            transform.position += new Vector3(-MoveSpeed, 0, 0);
+            animator.SetBool("GameOver", true);
+            return;
         }
         else
         {
-            transform.position += new Vector3(0, 0, 0);
+            animator.SetBool("GameOver", false);
+        }
+
+        ///ゲームスタートしたら
+        if (gameManagerScript.IsGameStart() == true)
+        {
+            if (Input.GetKey(KeyCode.D) && transform.position.x <= 10)
+            {
+                transform.position += new Vector3(MoveSpeed, 0, 0);
+            }
+            else if (Input.GetKey(KeyCode.A) && transform.position.x >= -10)
+            {
+                transform.position += new Vector3(-MoveSpeed, 0, 0);
+            }
+            
+        }
+        //装甲追加  
+        if (gameManagerScript.IsScore()>= 5)
+        {
+            ShotChenge = 1;
         }
     }
     void FixedUpdate()
     {
-
-        if (bulletTimer == 0.0f)
+        if (gameManagerScript.IsGameOver() == true)
         {
-            //�e����
-            if (Input.GetKey(KeyCode.Space))
+            return;
+        }
+        ///ゲームスタートしたら
+        if (gameManagerScript.IsGameStart() == true)
+        {
+            //マシンガン
+            if (bulletTimer[0] == 0.0f)
             {
-                Vector3 position = transform.position;
-                position.y += 0.5f;
-                position.z += 1.0f;
-                Instantiate(bullet, position, Quaternion.identity);
-                bulletTimer = 1.0f;
+                if(ShotChenge >= 0)
+                {
+                   Vector3 position = transform.position;
+                   position.y += 0.3f;
+                   position.z += 0.6f;
+                   Instantiate(bullet, position, Quaternion.identity);
+                   bulletTimer[0] = 1.0f;
+                   
+                }
+            }
+            else
+            {
+                bulletTimer[0]++;
+                if (bulletTimer[0] > 15.0f)
+                {
+                    bulletTimer[0] = 0.0f;
+                }
+            }
+            if (bulletTimer[1] == 0.0f)
+            {
+                //サブガトリング
+                if (ShotChenge >= 1)
+                {
+                    //弾発射
+                    Vector3 positionR = transform.position;
+                    Vector3 positionL = transform.position;
+                    positionR.y += 0.3f;
+                    positionR.x += 2.0f;
+                    positionL.y += 0.3f;
+                    positionL.x -= 2.0f;
+                    Instantiate(Lazer, positionR, Quaternion.identity);
+                    Instantiate(Lazer, positionL, Quaternion.identity);
+                    bulletTimer[1] = 1.0f;
+                }
+            }
+            else
+            {
+                bulletTimer[1]++;
+                if (bulletTimer[1] > 5.0f)
+                {
+                    bulletTimer[1] = 0.0f;
+                }
             }
         }
-        else
+        
+        if (MaxHp <= 0)
         {
-            bulletTimer++;
-            if (bulletTimer > 5.0f)
-            {
-                bulletTimer = 0.0f;
-            }
+           gameManagerScript.GameOverStart();
+           Destroy(gameObject, 1);
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            MaxHp -= 15;
+            hpSlider.value = (float)MaxHp / (float)playerHP;//スライダは０〜1.0で表現するため最大HPで割って少数点数字に変換
         }
     }
 }

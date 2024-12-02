@@ -3,11 +3,26 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
+using static System.Net.Mime.MediaTypeNames;
+
 
 public class GameManager : MonoBehaviour
 {
     public GameObject enemy;
+    public GameObject minienemy;
+    public GameObject bigenemy;
+    public GameObject player;
+    public GameObject gameOverText;
     int[] CoolTime = new int[5];
+    private bool GameOverFlag = false;
+    private bool GameStartFlag = false;
+    public TextMeshProUGUI scoreText;
+    private int score = 0;
+    public TextMeshProUGUI startText;
+    private int Wave = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,68 +31,201 @@ public class GameManager : MonoBehaviour
         {
             CoolTime[i] = 0;
         }
+        startText.enabled = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //ゲームオーバーなら
-        if (Input.GetKeyDown(KeyCode.Return))
+        //スコア
+        scoreText.text = "SCORE" + score;
+
+        //スタート
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene("TitleScene");
+            GameStartFlag = true;
+            startText.enabled = false;
         }
-
+        
     }
-
     private void FixedUpdate()
     {
-        int r = Random.Range(0, 15000);
-        CoolTime[0]++;
-        CoolTime[1]++;
-        CoolTime[2]++;
-        CoolTime[3]++;
-        CoolTime[4]++;
+        if (GameOverFlag == true) return;
 
-        if (r <= 300)
+        //敵生成
+        if (GameStartFlag == true && Wave == 0)//WAVE0
         {
-            if(CoolTime[0]>=30)
+            int r = Random.Range(0, 50000);
+            int Style = Random.Range(0, 6);
+            CoolTime[0]++;
+            CoolTime[1]++;
+            CoolTime[2]++;
+            CoolTime[3]++;
+            CoolTime[4]++;
+
+            if (r <= 300)
             {
-                Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
-                CoolTime[0] = 0;
+                if (CoolTime[0] >= 30)
+                {
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    CoolTime[0] = 0;
+                }
+            }
+            if (r >= 2000 && r <= 2300)
+            {
+                if (CoolTime[1] >= 30)
+                {
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    CoolTime[1] = 0;
+                }
+            }
+            if (r >= 4000 && r <= 4300)
+            {
+                if (CoolTime[2] >= 30)
+                {
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    CoolTime[2] = 0;
+                }
+            }
+            if (r >= 6000 && r <= 6300)
+            {
+                if (CoolTime[3] >= 30)
+                {
+                    if (Style == 0)
+                    {
+                        Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 1)
+                    {
+                        Instantiate(minienemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    if (Style == 2)
+                    {
+                        Instantiate(bigenemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    }
+                    CoolTime[3] = 0;
+                }
+            }
+            if (r >= 8000 && r <= 8300)
+            {
+                if (CoolTime[4] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[4] = 0;
+                }
             }
         }
-        if (r >= 2000&&r <= 2300)
+
+        if (GameStartFlag==true&&Wave == 1)//WAVE1
         {
-            if (CoolTime[1] >= 30)
+            int r = Random.Range(0, 20000);
+            CoolTime[0]++;
+            CoolTime[1]++;
+            CoolTime[2]++;
+            CoolTime[3]++;
+            CoolTime[4]++;
+
+            if (r <= 300)
             {
-                Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
-                CoolTime[1] = 0;
+                if (CoolTime[0] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(-8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[0] = 0;
+                }
+            }
+            if (r >= 2000 && r <= 2300)
+            {
+                if (CoolTime[1] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(0.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[1] = 0;
+                }
+            }
+            if (r >= 4000 && r <= 4300)
+            {
+                if (CoolTime[2] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[2] = 0;
+                }
+            }
+            if (r >= 6000 && r <= 6300)
+            {
+                if (CoolTime[3] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[3] = 0;
+                }
+            }
+            if (r >= 8000 && r <= 8300)
+            {
+                if (CoolTime[4] >= 30)
+                {
+                    Instantiate(enemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
+                    CoolTime[4] = 0;
+                }
             }
         }
-        if (r >= 4000 && r <= 4300)
-        {
-            if (CoolTime[2] >= 30)
-            {
-                Instantiate(enemy, new Vector3(8.0f, 1.5f, 45.0f), Quaternion.identity);
-                CoolTime[2] = 0;
-            }
-        }
-        if (r >= 6000 && r <= 6300)
-        {
-            if (CoolTime[3] >= 30)
-            {
-                Instantiate(enemy, new Vector3(4.0f, 1.5f, 45.0f), Quaternion.identity);
-                CoolTime[3] = 0;
-            }
-        }
-        if (r >= 8000 && r <= 8300)
-        {
-            if (CoolTime[4] >= 30)
-            {
-                Instantiate(enemy, new Vector3(-4.0f, 1.5f, 45.0f), Quaternion.identity);
-                CoolTime[4] = 0;
-            }
-        }
+        
     }
-
+    public void GameOverStart()
+    {
+        GameOverFlag = true;
+        gameOverText.SetActive(true);
+    }
+    public bool IsGameOver()
+    {
+        return GameOverFlag;
+    }
+    public void Score()
+    {
+        score += 1;
+    }
+    public int IsScore()
+    {
+        return score;
+    }
+    public void GameStart()
+    {
+        GameStartFlag = false;
+    }
+    public bool IsGameStart()
+    {
+        return GameStartFlag;
+    }
+    
 }
