@@ -21,14 +21,15 @@ public class GameManager : MonoBehaviour
 
     //Select
     private bool isSelectorOpened = false;
-    
+
+    [SerializeField]
     //ゲームシステム
-    private bool GameOverFlag = false;
-    private bool GameClearFlag = false;
-    private bool GameStartFlag = false;
+    public bool GameOverFlag = false;
+    public bool GameClearFlag = false;
+    public bool GameStartFlag = false;
     public int batteryEnergy = 0;//強化用
     public int healBatteryEnergy = 0;//回復用
-    private int healcount = 5;//回復回数
+    public int healcount = 5;//回復回数
 
     //WAVE
     public int Wave;
@@ -70,15 +71,10 @@ public class GameManager : MonoBehaviour
 
         //セレクト
         OffSelect();
-
-
         //UI全体
         Allui();
-
         //回復管理
         HwalManager();
-
-
         //ウェーブ管理
         WaveManager();
 
@@ -198,7 +194,7 @@ public class GameManager : MonoBehaviour
     }
     public void ShieldBatteryEnargy()
     {
-        batteryEnergy -= 100; // バッテリーを-100
+        batteryEnergy -= 30; // バッテリーを-30
     }
     public int GetHealBatteryEnargy()
     {
