@@ -6,9 +6,15 @@ using UnityEngine.UI;
 
 public class NomalEnemy : MonoBehaviour
 {
+    //参照
     private GameObject gameManager;
     private GameManager gameManagerScript;
-    private Animator animator;
+    private GameObject energyManager;
+    private EnergyManager energyManagerScript;
+    private GameObject healEnargyManager;
+    private HealEnargyManager healEnergyManagerScript;
+
+    private Animator animator; //アニメーション
     public int enemyHP;// 敵の最大HP
     private int EnemyNowHP;  // 敵の現在のHP
     public Slider hpSlider; //HPバー（スライダー）
@@ -44,6 +50,10 @@ public class NomalEnemy : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        energyManager = GameObject.Find("EnergyManager");
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
+        healEnargyManager = GameObject.Find("HealEnargyManager");
+        healEnergyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         hpSlider.value = enemyHP;//HPバーの最初の値（最大HP）を設定
@@ -95,9 +105,9 @@ public class NomalEnemy : MonoBehaviour
             Destroy(newParticle.gameObject, 4.5f);
 
             //スコア上昇
-            gameManagerScript.BatteryEnargyUp();
+            energyManagerScript.BatteryEnargyUp();
             //回復バッテリー上昇
-            gameManagerScript.HealBatteryEnargyUp();
+            healEnergyManagerScript.HealBatteryEnargyUp();
             //敵消える
             Destroy(gameObject, 0f);
 

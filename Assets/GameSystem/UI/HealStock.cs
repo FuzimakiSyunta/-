@@ -9,11 +9,14 @@ public class HealStockDisplay : MonoBehaviour
     public Image healStockGage; // HealStockのゲージ
     public GameObject pausesystem; // PauseSystemオブジェクト
     private PauseSystem pauseSystemScript; // PauseSystemのスクリプト
+    private HealEnargyManager healEnargyManagerScript; // HealEnargyManagerのスクリプト
+    public GameObject healEnargyManager; // HealEnargyManagerオブジェクト
 
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         pauseSystemScript = pausesystem.GetComponent<PauseSystem>();
+        healEnargyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
     }
 
     void Update()
@@ -41,7 +44,7 @@ public class HealStockDisplay : MonoBehaviour
         {
             healStockGage.gameObject.SetActive(true); // ゲージを表示
             // HealStock数に応じて画像を表示・非表示
-            int healCount = gameManagerScript.HealCount();
+            int healCount = healEnargyManagerScript.HealCount();
             for (int i = 0; i < healStockImages.Length; i++)
             {
                 healStockImages[i].enabled = i < healCount; // 条件付き表示

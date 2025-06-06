@@ -11,6 +11,9 @@ public class Heal : MonoBehaviour
     public GameObject pauseSystem;
     private PauseSystem pauseSystemScript;
 
+    private HealEnargyManager healEnargyManagerScript;
+    public GameObject healEnargyManager;
+
     public GameObject Stunby; // 点滅用オブジェクト1
     public GameObject HealOk; // 点滅用オブジェクト2
 
@@ -23,6 +26,7 @@ public class Heal : MonoBehaviour
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         pauseSystemScript = pauseSystem.GetComponent<PauseSystem>();
+        healEnargyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
 
         // 初期は非表示
         Stunby.SetActive(false);
@@ -31,7 +35,7 @@ public class Heal : MonoBehaviour
 
     void Update()
     {
-        int healBatteryEnergy = gameManagerScript.GetHealBatteryEnargy();
+        int healBatteryEnergy = healEnargyManagerScript.GetHealBatteryEnargy();
 
         // 回復不可 or ポーズ中 → 両方非表示
         if (pauseSystemScript.IsPaused() || healBatteryEnergy < 9||gameManagerScript.IsGameClear()||gameManagerScript.IsGameOver())

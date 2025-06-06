@@ -5,8 +5,12 @@ using UnityEngine.UI;
 
 public class HeavyEnemy : MonoBehaviour
 {
+    //参照
     private GameObject gameManager;
     private GameManager gameManagerScript;
+    private GameObject energyManager;
+    private EnergyManager energyManagerScript;
+    //アニメーション
     private Animator animator;
     public int enemyHP;// 敵の最大HP
     private int EnemyNowHP;  // 敵の現在のHP
@@ -42,6 +46,8 @@ public class HeavyEnemy : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        energyManager = GameObject.Find("EnergyManager");
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
         hpSlider.value = enemyHP;//HPバーの最初の値（最大HP）を設定
@@ -93,7 +99,7 @@ public class HeavyEnemy : MonoBehaviour
             Destroy(newParticle.gameObject, 0.5f);
 
             //スコア上昇
-            gameManagerScript.BatteryEnargyUp();
+            energyManagerScript.BatteryEnargyUp();
             //敵消える
             Destroy(gameObject, 0f);
 

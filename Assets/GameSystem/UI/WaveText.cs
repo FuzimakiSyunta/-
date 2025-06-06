@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class WaveTextScript : MonoBehaviour
 {
-    
+    // Wave”Ô†‚É‰‚¶‚Ä•\¦‚³‚ê‚é‰æ‘œ
     public GameObject[] leftImages;
     public GameObject[] rightImages;
+    // WaveManager‚ÌQÆ
+    private WaveManager waveManagerScript;
+    public GameObject waveManager;
 
-    
     public AnimationCurve moveCurve;
     public float moveDuration = 2f;
 
@@ -16,6 +18,9 @@ public class WaveTextScript : MonoBehaviour
 
     void Start()
     {
+        // WaveManager‚Ìæ“¾
+        waveManagerScript = waveManager.GetComponent<WaveManager>();
+        // GameManager‚Ìæ“¾
         gameManagerScript = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
@@ -23,7 +28,7 @@ public class WaveTextScript : MonoBehaviour
     {
         if (!gameManagerScript.IsGameStart()) return;
 
-        int currentWave = gameManagerScript.IsWave();
+        int currentWave = waveManagerScript.IsWave();
         TryStartWaveAnimation(currentWave);
     }
 
