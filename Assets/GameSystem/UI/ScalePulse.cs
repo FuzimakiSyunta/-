@@ -1,23 +1,23 @@
 using System.Collections;
 using UnityEngine;
 
-public class ScaleRepeat : MonoBehaviour
+public class ScalePulse : MonoBehaviour
 {
     public float scaleFactor = 1.5f; // Šg‘å”{—¦
     public float duration = 0.3f;   // Šg‘åEk¬‚É‚©‚©‚éŠÔ
-    private Vector3 originalScale;
-    private PlayerScript playerScriptScript;
-    public GameObject playerScript;
+    private Vector3 originalScale;// Œ³‚ÌƒXƒP[ƒ‹
+    private PlayerStatus playerStatus;
+    public GameObject player;
 
     void Start()
     {
         originalScale = transform.localScale;
-        playerScriptScript = playerScript.GetComponent<PlayerScript>();
+        playerStatus = player.GetComponent<PlayerStatus>();
     }
 
     void Update()
     {
-        if (playerScriptScript.IsHeal()) 
+        if (playerStatus.IsHeal())
         {
             StartCoroutine(ScaleObject());
         }
@@ -35,7 +35,7 @@ public class ScaleRepeat : MonoBehaviour
     {
         Vector3 startScale = transform.localScale;
         float elapsedTime = 0f;
-
+        // Šg‘åEk¬‚ÌŠÔ‚ÌŠÔ‚ğŒv‘ª
         while (elapsedTime < time)
         {
             transform.localScale = Vector3.Lerp(startScale, targetScale, elapsedTime / time);
