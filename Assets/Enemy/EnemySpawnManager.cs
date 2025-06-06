@@ -7,6 +7,12 @@ public class EnemySpawnManager : MonoBehaviour
     //gamemanager
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    //wave
+    private WaveManager waveManagerScript;
+    public GameObject waveManager;
+    //OperationTutorial
+    private OperationTutorialManager operationTutorialManagerScript;
+    public GameObject operationTutorialManager;
 
     //Enemy
     public GameObject attackEnemy;
@@ -24,6 +30,8 @@ public class EnemySpawnManager : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        waveManagerScript = waveManager.GetComponent<WaveManager>();
+        operationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
     }
 
     // Update is called once per frame
@@ -46,15 +54,15 @@ public class EnemySpawnManager : MonoBehaviour
     {
         if (gameManagerScript.IsGameOver() || gameManagerScript.IsGameClear()) return;
 
-        if (gameManagerScript.IsGameStart()&&gameManagerScript.IsWave()<=3)
+        if (gameManagerScript.IsGameStart()&&!operationTutorialManagerScript.IsOperationTutorial()&& waveManagerScript.IsWave()<=3)
         {
             // WAVEの値に応じてスポーンクールタイムを変更
-            int currentWave = gameManagerScript.IsWave();
-            if (currentWave >= 2)
+            int currentWave = waveManagerScript.IsWave();
+            if (currentWave >= 1)
             {
                 spawnCooldown = 1.0f; // WAVE 2 以降は 1秒
             }
-            else if (currentWave >= 1)
+            else if (currentWave >= 2)
             {
                 spawnCooldown = 1.5f; // WAVE 1 は 1.5秒
             }
@@ -63,7 +71,7 @@ public class EnemySpawnManager : MonoBehaviour
                 spawnCooldown = 2.0f; // それ以外は 2秒
             }
 
-            spawnTimer += Time.deltaTime;
+            spawnTimer += Time.deltaTime;// タイマーを更新
 
             // 2秒ごとに敵を出現
             if (spawnTimer >= spawnCooldown)
@@ -74,8 +82,8 @@ public class EnemySpawnManager : MonoBehaviour
                 // 敵の種類を決定
                 List<GameObject> enemyTypes = new List<GameObject> { attackEnemy, meteoriteEnemy, healPlaneEnemy };
 
-                if (gameManagerScript.IsWave() >= 2) enemyTypes.Add(hoverCarEnemy);
-                if (gameManagerScript.IsWave() >= 3) enemyTypes.Add(FinalAttackPlaneEnemy);
+                if (waveManagerScript.IsWave() >= 1) enemyTypes.Add(hoverCarEnemy);
+                if (waveManagerScript.IsWave() >= 2) enemyTypes.Add(FinalAttackPlaneEnemy);
 
                 // ランダムな種類の敵を出現
                 foreach (var pos in enemyPatterns[currentPatternIndex])
@@ -83,7 +91,7 @@ public class EnemySpawnManager : MonoBehaviour
                     int randomEnemyIndex = Random.Range(0, enemyTypes.Count);
                     GameObject newEnemy = Instantiate(enemyTypes[randomEnemyIndex], pos, Quaternion.identity);
 
-                    // `enemy` のみ y 座標を 8 に変更
+                    // `attackEnemy` のみ y 座標を 8 に変更
                     if (enemyTypes[randomEnemyIndex] == attackEnemy)
                     {
                         newEnemy.transform.position = new Vector3(pos.x, 8.0f, pos.z);
@@ -93,7 +101,7 @@ public class EnemySpawnManager : MonoBehaviour
                     {
                         newEnemy.transform.position = new Vector3(pos.x, 3.0f, pos.z);
                     }
-                    // `powerCarEnemy` のみ y 座標を 3 に変更
+                    // `FinalAttackPlaneEnemy` のみ y 座標を 3 に変更
                     if (enemyTypes[randomEnemyIndex] == FinalAttackPlaneEnemy)
                     {
                         newEnemy.transform.position = new Vector3(pos.x, 5.5f, pos.z);

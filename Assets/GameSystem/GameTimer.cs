@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class GameTimer : MonoBehaviour
 {
+    // ゲームマネージャーの参照
     public GameObject gameManager;
     private GameManager gameManagerScript;
+    // OperationTutorialの参照
+    private OperationTutorialManager operationTutorialManagerScript;
+    public GameObject operationTutorialManager;
 
     private int startTime;
     private int elapsedTime;
@@ -15,6 +19,7 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        operationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
         elapsedTime = 0;
         totalElapsedTime = 0;
         isTimerRunning = false; // 初期状態ではタイマー停止
@@ -22,7 +27,7 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
-        if (gameManagerScript.IsGameStart() && !isTimerRunning)
+        if (gameManagerScript.IsGameStart() &&!operationTutorialManagerScript.IsOperationTutorial()&& !isTimerRunning)
         {
             StartTimer(); // ゲーム開始時にタイマーを開始
         }

@@ -19,7 +19,7 @@ public class PanelEffect : MonoBehaviour
     private bool isAlpha;
 
     // Tutorial
-    private TutorialManager tutorialManagerScript;
+    private TutorialWindowManager tutorialManagerScript;
     public GameObject tutorialManager;
 
 
@@ -28,7 +28,7 @@ public class PanelEffect : MonoBehaviour
         selectorMenuScript = selectorMenu.GetComponent<SelectorMenu>();
         
         //tutorial
-        tutorialManagerScript = tutorialManager.GetComponent<TutorialManager>();
+        tutorialManagerScript = tutorialManager.GetComponent<TutorialWindowManager>();
     }
 
     private void Update()
