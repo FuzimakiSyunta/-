@@ -44,9 +44,19 @@ public class TutorialWindowManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown("joystick button 2"))
             {
                 istutorialOpen = false;
-                gameManagerScript.GameStart();//ゲーム開始
-                IsTutorialCheck = false; // チュートリアルが終了したのでフラグをリセット
+                IsTutorialCheck = false;
+
+                // ゲーム開始ではなく、操作チュートリアルをここで開始する
+                OperationTutorialManager operationTutorialManager = FindObjectOfType<OperationTutorialManager>();
+                if (operationTutorialManager != null)
+                {
+                    operationTutorialManager.StartOperationTutorial();
+                }
+
+                // ゲーム開始処理はチュートリアル後に行う
+                // gameManagerScript.GameStart(); ← これは削除 or コメントアウト
             }
+
         }
         else
         {
