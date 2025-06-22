@@ -40,14 +40,14 @@ public class EnemyDamageHandler : MonoBehaviour
 
         switch (other.gameObject.tag)
         {
-            case "Bullet":
-                hpController.ApplyDamage(200);
+            case "PlayerLazer":
+                hpController.ApplyDamage(180);
                 break;
-            case "Machinegun":
+            case "PlayerLazer_R":
                 hpController.ApplyDamage(150);
                 break;
-            case "PenetrationBullet":
-                hpController.ApplyDamage(400);
+            case "PlayerLazer_L":
+                hpController.ApplyDamage(150);
                 break;
         }
     }

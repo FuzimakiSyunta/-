@@ -6,12 +6,22 @@ using UnityEngine;
 public class EnergyManager : MonoBehaviour
 {
     public int batteryEnergy = 0;
-
+    // ゲームマネージャーの参照
     private GameManager gameManagerScript;
+    public GameObject gameManager;
+    // オペレーションチュートリアルマネージャーの参照
+    private OperationTutorialManager operationTutorialManagerScript;
+    public GameObject operationTutorialManager;
+
+    private bool hasResetEnergy = false; // 一度だけリセットするためのフラグ
 
     void Start()
     {
         gameManagerScript = GetComponent<GameManager>();
+        if (gameManager != null)
+        {
+            gameManagerScript = gameManager.GetComponent<GameManager>();
+        }
     }
 
     void Update()
@@ -20,25 +30,41 @@ public class EnergyManager : MonoBehaviour
         {
             batteryEnergy = 0;
         }
+        // ゲームスタート時に一度だけリセット
+        if (!hasResetEnergy && gameManagerScript != null && gameManagerScript.IsGameStart())
+        {
+            ResetBattery();
+            hasResetEnergy = true;
+        }
     }
 
-    public void BatteryEnargyUp()
+    public void BatteryEnergyUp()
     {
         batteryEnergy += 1;
     }
 
-    public void BatteryEnargyDown()
+    public void BatteryEnergyDown()
     {
-        batteryEnergy -= 2;
+        batteryEnergy -= 1;
     }
 
-    public int GetBatteryEnargy()
+    public void ResetBattery()
+    {
+        batteryEnergy = 0;
+    }
+
+    public int GetBatteryEnergy()
     {
         return batteryEnergy;
     }
-
-    public void ShieldBatteryEnargy()
+    //バッテリー消費
+    public void ReduceBatteryEnergy()
     {
         batteryEnergy -= 30;
+    }
+    //バッテリー加算
+    public void AddBatteryEnergy()
+    {
+        batteryEnergy = 30;
     }
 }

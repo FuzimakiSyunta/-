@@ -31,7 +31,7 @@ public class AttackEnemyManager : MonoBehaviour
             newParticle.transform.position = transform.position;
             newParticle.Play();
             Destroy(newParticle.gameObject, 0.5f);
-            reference.energyManagerScript.BatteryEnargyUp();
+            reference.energyManagerScript.BatteryEnergyUp();
             Destroy(gameObject);
         }
     }

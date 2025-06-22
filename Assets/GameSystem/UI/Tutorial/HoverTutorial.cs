@@ -28,7 +28,7 @@ public class HoverTutorial : MonoBehaviour
         // 操作チュートリアルの表示時間を取得
         float tutorialShowTime = operationTutorialManagerScript.GetTutorialShowTime();
         // Move チュートリアルが終わってから表示
-        if (operationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 12.0f && tutorialShowTime <= 17.0f)
+        if (operationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 16.0f && tutorialShowTime <= 23.0f)
         {
             ShowHoverTutorial();
         }else
