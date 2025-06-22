@@ -28,7 +28,7 @@ public class MoveTutorial : MonoBehaviour
         // 操作チュートリアルの表示時間を取得
         float tutorialShowTime = operationTutorialManagerScript.GetTutorialShowTime();
         // Shot チュートリアルが表示された後に Move を表示
-        if (operationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 6.0f && tutorialShowTime <= 11.0f)
+        if (operationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 8.0f && tutorialShowTime <= 15.0f)
         {
             ShowMoveTutorial();
         }

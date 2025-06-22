@@ -562,7 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681d66cebf6185a40b75021a77ae0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 1600
+  enemyHP: 600
   hpSlider: {fileID: 7262347468014557397}
   sliderBool: 0
 --- !u!114 &2593076688282155027

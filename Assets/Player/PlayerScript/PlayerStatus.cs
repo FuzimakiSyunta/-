@@ -19,8 +19,8 @@ public class PlayerStatus : MonoBehaviour
     public bool isPenetrationPoweredUp;
     public bool isLaserPoweredUp;
 
-    public int maxHp = 500;
-    public int currentHp;
+    public int maxHp = 300;// ÉvÉåÉCÉÑÅ[ÇÃç≈ëÂHP
+    public int currentHp;// åªç›ÇÃHP
     public UnityEngine.UI.Slider hpSlider;
 
     void Start()
@@ -32,8 +32,6 @@ public class PlayerStatus : MonoBehaviour
             hpSlider.value = 1.0f;
         }
     }
-
-
 
     public void SetHp(int value)
     {
