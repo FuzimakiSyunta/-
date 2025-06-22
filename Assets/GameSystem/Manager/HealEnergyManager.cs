@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealEnargyManager : MonoBehaviour
+public class HealEnergyManager : MonoBehaviour
 {
     //‰ñ•œƒGƒlƒ‹ƒM[‚ÌŠÇ—
     public int healBatteryEnergy = 0;
@@ -29,7 +29,7 @@ public class HealEnargyManager : MonoBehaviour
             healBatteryEnergy = 9;
         }
     }
-    public void HealBatteryEnargyReset()
+    public void HealBatteryEnergyReset()
     {
         healBatteryEnergy = 0;
     }
@@ -39,7 +39,7 @@ public class HealEnargyManager : MonoBehaviour
         healBatteryEnergy += 1;
     }
 
-    public int GetHealBatteryEnargy()
+    public int GetHealBatteryEnergy()
     {
         return healBatteryEnergy;
     }

@@ -2,70 +2,53 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-    using UnityEngine.UI;
+using UnityEngine.UI;
 
 public class SelectorMenu : MonoBehaviour
 {
     private GameManager gameManagerScript;
     public GameObject gameManager;
-    //public RectTransform Selector;
-    //public GameObject SelectorImage;
+
     public GameObject GAMESTARTImage;
     public GameObject SETTINGImage;
-    public bool SettingButtonNowFlag;//セッティングが出せる状態
-    public bool GameStartButtonNowFlag;//ゲームが始められる状態
-    private float SelectorMove = 3.0f;
-    private float baseSpeed; // 基本速度を設定
+    public bool SettingButtonNowFlag;
+    public bool GameStartButtonNowFlag;
+    private float SelectorMove = 12.0f;
+    private float baseSpeed = 300.0f; // 任意の速度
     public RectTransform SettingMENUImage;
     public RectTransform StartImage;
     public GameObject LuleBGmage;
     public GameObject LuleUiImage;
     public GameObject LTRTImage;
-    //性能表
     public GameObject SpecImage;
 
     private bool isSeaneEffect = false;
-    
+    private bool shouldMove = false;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        ////selector
-        //SelectorImage.SetActive(false);
-        
-        //Lule
+
         LuleBGmage.SetActive(false);
         LuleUiImage.SetActive(false);
-        //
         SpecImage.SetActive(false);
-
-        
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //L Stick
         float tri = Input.GetAxis("L_R_Trigger");
-        
 
-        if (gameManagerScript.IsOpenSelector()==true&&gameManagerScript.IsGameStart()==false)
+        if (gameManagerScript.IsOpenSelector() && !gameManagerScript.IsGameStart())
         {
-            //画像移動
             if (SettingMENUImage.position.x >= 410.0f)
             {
-                // moveを時間に基づいて計算
-                SelectorMove = baseSpeed * Time.deltaTime; // 経過時間を掛けて速度を調整
-                SelectorMove *= -1; // 移動方向を反転
-
-
+                SelectorMove = baseSpeed * Time.fixedDeltaTime * -1f;
+                shouldMove = false;
 
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                 StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
-                
-                //Selector
-                if (SettingButtonNowFlag == false && isSeaneEffect == false)
+
+                if (!SettingButtonNowFlag && !isSeaneEffect)
                 {
                     GameStartButtonNowFlag = true;
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
@@ -74,13 +57,10 @@ public class SelectorMenu : MonoBehaviour
                     LuleUiImage.SetActive(true);
                     SpecImage.SetActive(false);
 
-
-                    if (Input.GetKeyDown(KeyCode.S)|| tri > 0)
+                    if (Input.GetKeyDown(KeyCode.S) || tri > 0)
                     {
-                        
                         GameStartButtonNowFlag = false;
                         SettingButtonNowFlag = true;
-                        
                     }
                     if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
                     {
@@ -89,7 +69,6 @@ public class SelectorMenu : MonoBehaviour
                         LuleUiImage.SetActive(false);
                         GAMESTARTImage.SetActive(false);
                         SETTINGImage.SetActive(false);
-                        
                     }
                 }
                 else
@@ -97,51 +76,61 @@ public class SelectorMenu : MonoBehaviour
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
                     StartImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
                 }
-                if (SettingButtonNowFlag == true)
+
+                if (SettingButtonNowFlag)
                 {
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 120);
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 120);
                     LuleBGmage.SetActive(false);
                     LuleUiImage.SetActive(false);
                     SpecImage.SetActive(true);
-                    if (Input.GetKeyDown(KeyCode.W)||  tri < 0&&isSeaneEffect == false)
+
+                    if ((Input.GetKeyDown(KeyCode.W) || tri < 0) && !isSeaneEffect)
                     {
-                        
                         SettingButtonNowFlag = false;
                         GameStartButtonNowFlag = true;
                     }
-                    
                 }
                 else
                 {
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 100);
                     SettingMENUImage.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 100);
-                    
                 }
             }
             else
             {
-                SettingMENUImage.position += new Vector3(SelectorMove, 0, 0);
-                StartImage.position += new Vector3(SelectorMove, 0, 0);
-                
+                shouldMove = true;
             }
-        }else
+        }
+        else
         {
             isSeaneEffect = false;
+            shouldMove = false;
         }
-        
     }
+
+    void FixedUpdate()
+    {
+        if (shouldMove)
+        {
+            Vector3 move = new Vector3(SelectorMove, 0, 0);
+            SettingMENUImage.position += move;
+            StartImage.position += move;
+        }
+    }
+
     public bool IsColorMenuFlag()
     {
-        return SettingButtonNowFlag;//SettingボタンのFrag
+        return SettingButtonNowFlag;
     }
+
     public bool IsStartButtonFlag()
     {
-        return GameStartButtonNowFlag;//GameStartボタンのFrag
+        return GameStartButtonNowFlag;
     }
 
     public bool IsSeaneEffectFlag()
     {
-        return isSeaneEffect;//画面推移Effectフラグ
+        return isSeaneEffect;
     }
 }

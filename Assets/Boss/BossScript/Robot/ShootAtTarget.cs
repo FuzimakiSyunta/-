@@ -45,13 +45,14 @@ public class ShootAtTarget : MonoBehaviour
     IEnumerator ChargeAndFire()
     {
         isCharging = true;
-        
-        yield return new WaitForSeconds(10f);
+
+        yield return new WaitForSeconds(5f); // チャージ時間（1秒）
         FireSpecialBullet();
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(6f); // クールダウン時間（2秒）
         isCharging = false;
     }
+
 
     void FireSpecialBullet()
     {

@@ -1,5 +1,4 @@
-
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class ShieldTutorial : MonoBehaviour
 {
@@ -8,40 +7,73 @@ public class ShieldTutorial : MonoBehaviour
     public GameObject operationTutorialManager;
     private OperationTutorialManager OperationTutorialManagerScript;
 
-    public GameObject hoverTutorial; // © HoverTutorial ‚ğQÆ
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
+
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
+
+    public GameObject hoverTutorial;
     private HoverTutorial hoverTutorialScript;
+
+    private bool hasShownShieldTutorial = false;
+    private bool hasCompletedTutorial = false;
+
+    public GameObject energyTextCancvas;
 
     void Start()
     {
         OperationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
         hoverTutorialScript = hoverTutorial.GetComponent<HoverTutorial>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
+        gameManagerScript = gameManager.GetComponent<GameManager>();
+
         if (ShieldTutorialImage != null)
         {
             ShieldTutorialImage.SetActive(false);
+        }
+        if (energyTextCancvas != null)
+        {
+            energyTextCancvas.SetActive(false); // åˆæœŸçŠ¶æ…‹ã§ã¯éè¡¨ç¤º
         }
     }
 
     void Update()
     {
-        float tutorialShowTime = OperationTutorialManagerScript.GetTutorialShowTime();// ‘€ìƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ì•\¦ŠÔ‚ğæ“¾
+        float tutorialShowTime = OperationTutorialManagerScript.GetTutorialShowTime();
 
-        // Hover ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ªŠ®—¹‚µ‚½‚ç•\¦
-        if (OperationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 18.0f && tutorialShowTime <= 23.0f)
+        // ã‚·ãƒ¼ãƒ«ãƒ‰ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«è¡¨ç¤ºæ¡ä»¶
+        if (OperationTutorialManagerScript.IsOperationTutorial())
         {
-            ShowShieldTutorial();
+            if (!hasShownShieldTutorial && tutorialShowTime >= 24.0f)
+            {
+                ShowShieldTutorial();
+                hasShownShieldTutorial = true;
+            }
+
+            if (tutorialShowTime >= 31.0f && !hasCompletedTutorial)
+            {
+                hasCompletedTutorial = true;
+                HideShieldTutorial();
+                OperationTutorialManagerScript.CompleteTutorial();
+            }
         }
-        else
+
+        // âœ… energyTextCanvas ã®è¡¨ç¤ºåˆ¶å¾¡ï¼ˆãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ« or ã‚²ãƒ¼ãƒ ä¸­ã®ã¿ï¼‰
+        bool showEnergyUI = OperationTutorialManagerScript.IsOperationTutorial() || gameManagerScript.IsGameStart();
+
+        if (energyTextCancvas != null)
         {
-            HideShieldTutorial();
+            energyTextCancvas.SetActive(showEnergyUI);
         }
     }
 
     public void ShowShieldTutorial()
     {
+        energyManagerScript.AddBatteryEnergy(); // ã‚¨ãƒãƒ«ã‚®ãƒ¼åŠ ç®—
         if (ShieldTutorialImage != null)
         {
             ShieldTutorialImage.SetActive(true);
-            OperationTutorialManagerScript.EndOperationTutorial();// ‘€ìƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğI—¹
         }
     }
 

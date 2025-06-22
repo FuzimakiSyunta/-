@@ -6,8 +6,8 @@ public class PlayerShield : MonoBehaviour
     public GameObject Shield;
     public GameManager gameManagerScript;
     public PlayerStatus playerStatus;
-    private EnergyManager enargyManagerScript;
-    public GameObject enargyManager;
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
 
     private bool isShieldActive = false;
     private Renderer shieldRenderer;
@@ -18,15 +18,15 @@ public class PlayerShield : MonoBehaviour
         {
             shieldRenderer = Shield.GetComponent<Renderer>();
         }
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
     }
 
     public void TryActivateShield()
     {
-        if (!isShieldActive && enargyManagerScript.GetBatteryEnargy() >= 30 &&
+        if (!isShieldActive && energyManagerScript.GetBatteryEnergy() >= 30 &&
             (Input.GetKeyDown("joystick button 3") || Input.GetKeyDown(KeyCode.Q)))
         {
-            enargyManagerScript.ShieldBatteryEnargy(); // エナジー消費
+            energyManagerScript.ReduceBatteryEnergy(); // エナジー消費
             StartCoroutine(HandleShield());
         }
     }
