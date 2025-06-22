@@ -11,8 +11,10 @@ public class PauseSystem : MonoBehaviour
     // GameManager
     private GameManager gameManagerScript;
     public GameObject gameManager;
+    // OperationTutorialManager
+    private OperationTutorialManager operationTutorialManagerScript;
+    public GameObject operationTutorialManager;
 
-    
     // PanelEffect
     private PanelEffect PanelEffectScript;
     public GameObject panelEffect;
@@ -40,7 +42,9 @@ public class PauseSystem : MonoBehaviour
         //pauseMenu
         pauseMenuSelectorScript = pauseMenuSelector.GetComponent<PauseMenuSelector>();
 
-        
+        // operationTutorialManager
+        operationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
+
 
         PauseImage.SetActive(false);
         Ui.SetActive(true);
@@ -50,10 +54,10 @@ public class PauseSystem : MonoBehaviour
 
     void Update()
     {
-        if (gameManagerScript.IsGameStart() == true && PanelEffectScript.IsAlpha() == true &&
-            gameManagerScript.IsGameOver() == false && gameManagerScript.IsGameClear() == false)
+        if (gameManagerScript.IsGameStart() && PanelEffectScript.IsAlpha() &&
+            !gameManagerScript.IsGameOver() && !gameManagerScript.IsGameClear()&&!operationTutorialManagerScript.IsOperationTutorial())
         {
-            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown("joystick button 7")&& pauseMenuSelectorScript.IsOperation()==false)
+            if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown("joystick button 7")&& !pauseMenuSelectorScript.IsOperation())
             {
                 TogglePause();
                 isPauseOn = true;

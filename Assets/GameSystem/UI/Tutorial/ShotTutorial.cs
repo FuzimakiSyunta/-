@@ -24,7 +24,7 @@ public class ShotTutorial : MonoBehaviour
     {
         // 操作チュートリアルの表示時間を取得
         float tutorialShowTime = operationTutorialManagerScript.GetTutorialShowTime();
-        if (operationTutorialManagerScript.IsOperationTutorial()&&tutorialShowTime <=5.0f)
+        if (operationTutorialManagerScript.IsOperationTutorial()&&tutorialShowTime <= 7.0f)
         {
             ShowShotTutorial();
         }

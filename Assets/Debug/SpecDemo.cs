@@ -8,14 +8,14 @@ public class SpecDemo : MonoBehaviour
     public GameObject gameManager;
     private GameManager gameManagerScript;
     //エナジーマネージャ
-    public GameObject enargyManager;
-    private EnergyManager enargyManagerScript;
+    public GameObject energyManager;
+    private EnergyManager energyManagerScript;
     //ウェーブマネージャ
     private WaveManager waveManagerScript;
     public GameObject waveManager;
     //ヒールエナジーマネージャ
-    private HealEnargyManager healEnargyManagerScript;
-    public GameObject healEnargyManager;
+    private HealEnergyManager healEnergyManagerScript;
+    public GameObject healEnergyManager;
     //ボスコントローラー
     public GameObject boss;
     private BossController bossController;
@@ -28,14 +28,14 @@ public class SpecDemo : MonoBehaviour
         gameManagerScript = gameManager.GetComponent<GameManager>();
         bossController = boss.GetComponent<BossController>();
         playerStatus = player.GetComponent<PlayerStatus>();
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
         waveManagerScript = waveManager.GetComponent<WaveManager>();
-        healEnargyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
+        healEnergyManagerScript = healEnergyManager.GetComponent<HealEnergyManager>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M)) enargyManagerScript.BatteryEnargyUp();
+        if (Input.GetKeyDown(KeyCode.M)) energyManagerScript.BatteryEnergyUp();
         if (Input.GetKey(KeyCode.N)) bossController.BossWaveTimeAdd(1f);
         if (Input.GetKeyDown(KeyCode.K)) waveManagerScript.BossWaveCountStart();
 
@@ -43,7 +43,7 @@ public class SpecDemo : MonoBehaviour
         if (Input.GetKey(KeyCode.Alpha1)) playerStatus.IncreaseHp(10);
         if (Input.GetKey(KeyCode.Alpha2)) bossController.ReduceHp(100);
         if (Input.GetKey(KeyCode.Alpha3)) bossController.ReduceHp(-100);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) healEnargyManagerScript.HealCounter();
+        if (Input.GetKeyDown(KeyCode.Alpha4)) healEnergyManagerScript.HealCounter();
 
         if (Input.GetKeyDown(KeyCode.T))
         {

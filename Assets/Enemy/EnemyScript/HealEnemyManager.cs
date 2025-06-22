@@ -16,7 +16,7 @@ public class HealEnemyManager : MonoBehaviour
     private EnemyShooter shooter;
 
     //エネルギー管理スクリプト
-    private HealEnargyManager healEnergyManagerScript;
+    private HealEnergyManager healEnergyManagerScript;
 
     void Awake()
     {
@@ -27,10 +27,10 @@ public class HealEnemyManager : MonoBehaviour
         shooter = GetComponent<EnemyShooter>();
         if (healEnergyManagerScript == null)
         {
-            healEnergyManagerScript = FindObjectOfType<HealEnargyManager>();
+            healEnergyManagerScript = FindObjectOfType<HealEnergyManager>();
             if (healEnergyManagerScript == null)
             {
-                Debug.LogError("HealEnargyManager script not found in the scene.");
+                Debug.LogError("HealEnergyManager script not found in the scene.");
             }
         }
     }
@@ -43,7 +43,7 @@ public class HealEnemyManager : MonoBehaviour
             newParticle.transform.position = transform.position;
             newParticle.Play();
             Destroy(newParticle.gameObject, 0.5f);
-            reference.energyManagerScript.BatteryEnargyUp();
+            reference.energyManagerScript.BatteryEnergyUp();
             if (healEnergyManagerScript != null)
             {
                 healEnergyManagerScript.HealBatteryEnergyUp();

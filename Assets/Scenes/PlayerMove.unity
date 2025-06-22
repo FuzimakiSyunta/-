@@ -1285,7 +1285,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &261420343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1295,7 +1295,7 @@ RectTransform:
   m_GameObject: {fileID: 261420342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 76d0242208183be48b7405a818bd5a2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   - {fileID: 448879560}
   healStockGage: {fileID: 1678389926}
   pausesystem: {fileID: 1754384288}
-  healEnargyManager: {fileID: 2733410150316724856}
+  healEnergyManager: {fileID: 2733410150316724856}
 --- !u!4 &453539447
 Transform:
   m_ObjectHideFlags: 0
@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25eb775a637a8cc479dee9413524fc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enargyText: {fileID: 487637631}
+  energyText: {fileID: 487637631}
   gameManager: {fileID: 738859541}
   energyManager: {fileID: 1408598509}
 --- !u!1 &490086181 stripped
@@ -4735,7 +4735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &927644990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4756,7 +4756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 51586d2b1749073419bca32d5a4847af, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4783,7 +4783,7 @@ RectTransform:
   m_GameObject: {fileID: 927644989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -5531,7 +5531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1019520434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5552,7 +5552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7456cdbabced01b4c887b5273b55fee7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5579,7 +5579,7 @@ RectTransform:
   m_GameObject: {fileID: 1019520433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -6750,7 +6750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1220603364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6760,7 +6760,7 @@ RectTransform:
   m_GameObject: {fileID: 1220603363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -6790,7 +6790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3f2fcc345240fa641be62c00cb87c682, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7679,9 +7679,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 927644992}
   - {fileID: 1220603364}
   - {fileID: 2107978546}
-  - {fileID: 927644992}
   - {fileID: 1019520436}
   - {fileID: 261420343}
   m_Father: {fileID: 1955221190}
@@ -7924,6 +7924,7 @@ MonoBehaviour:
   ShieldTutorialImage: {fileID: 1019520433}
   operationTutorialManager: {fileID: 1469238502}
   hoverTutorial: {fileID: 1469238502}
+  energyManager: {fileID: 1408598509}
 --- !u!114 &1469238505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7970,7 +7971,7 @@ MonoBehaviour:
   isOperationTutorial: 0
   TutorialShowTime: 0
   skipImage: {fileID: 261420342}
-  isSkip: 0
+  energyManager: {fileID: 1408598509}
 --- !u!4 &1469238508
 Transform:
   m_ObjectHideFlags: 0
@@ -9845,7 +9846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bfe05e0a7239146a00ccf3bf43b4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMaxHp: 110000
+  bossMaxHp: 120000
   isFinalBattle: 0
   animator: {fileID: 1736841783}
   finalRobot: {fileID: 1942425953}
@@ -11025,8 +11026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 738859541}
   playerModels: {fileID: 651588144}
-  enargyManager: {fileID: 1408598509}
-  healEnargyManager: {fileID: 2733410150316724856}
+  energyManager: {fileID: 1408598509}
+  healEnergyManager: {fileID: 2733410150316724856}
   boss: {fileID: 1736841748}
   bossBullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
   TitleUi: {fileID: 0}
@@ -11412,7 +11413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2107978544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11433,7 +11434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4363a9a4cc489ba41bf0bd72a53fbfdd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11460,7 +11461,7 @@ RectTransform:
   m_GameObject: {fileID: 2107978543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -11669,7 +11670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 738859541}
   pauseSystem: {fileID: 1754384288}
-  healEnargyManager: {fileID: 2733410150316724856}
+  healEnergyManager: {fileID: 2733410150316724856}
   Stunby: {fileID: 1275758901}
   HealOk: {fileID: 1595329233}
   switchInterval: 0.5
@@ -11865,7 +11866,15 @@ PrefabInstance:
     - target: {fileID: 1952876577195621260, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
       propertyPath: healEnargyManager
       value: 
-      objectReference: {fileID: 7530265955704033669}
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952876577195621260, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
+      propertyPath: healEnergyManager
+      value: 
+      objectReference: {fileID: 7530265955704033671}
+    - target: {fileID: 1952876577195621260, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
+      propertyPath: operationTutorialManager
+      value: 
+      objectReference: {fileID: 1469238502}
     - target: {fileID: 2005419534603504357, guid: 94addd29f9cdc7b44a36623262b6edd7, type: 3}
       propertyPath: images.Array.data[0]
       value: 
@@ -13071,6 +13080,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8299169261952203884, guid: d0b2dc7866b90a44897de22df621cbae, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
+    - target: {fileID: 8299169261952203884, guid: d0b2dc7866b90a44897de22df621cbae, type: 3}
+      propertyPath: operationTutorialManager
+      value: 
+      objectReference: {fileID: 1469238502}
     - target: {fileID: 8864571637129723455, guid: d0b2dc7866b90a44897de22df621cbae, type: 3}
       propertyPath: m_Name
       value: EnergyManager
@@ -13417,10 +13434,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealEnergyManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7714285699953190240, guid: 062a7746f11c596479b81d54203c1ff0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9202053946395522858, guid: 062a7746f11c596479b81d54203c1ff0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7530265955704033671}
   m_SourcePrefab: {fileID: 100100000, guid: 062a7746f11c596479b81d54203c1ff0, type: 3}
 --- !u!1001 &4518142820418433011
 PrefabInstance:
@@ -13822,6 +13843,10 @@ PrefabInstance:
       propertyPath: panelEffect
       value: 
       objectReference: {fileID: 475262386}
+    - target: {fileID: 4153078095559918611, guid: a0ea8afc156d38e4e8673f8c2c0bce78, type: 3}
+      propertyPath: operationTutorialManager
+      value: 
+      objectReference: {fileID: 1469238502}
     - target: {fileID: 6021992941801991799, guid: a0ea8afc156d38e4e8673f8c2c0bce78, type: 3}
       propertyPath: m_Name
       value: PauseManager
@@ -14021,7 +14046,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1408598509}
     - target: {fileID: 6636406214717178437, guid: 579eb024630e714468edcb4162bfeaa4, type: 3}
+      propertyPath: energyManager
+      value: 
+      objectReference: {fileID: 1408598509}
+    - target: {fileID: 6636406214717178437, guid: 579eb024630e714468edcb4162bfeaa4, type: 3}
       propertyPath: healEnargyManager
+      value: 
+      objectReference: {fileID: 2733410150316724856}
+    - target: {fileID: 6636406214717178437, guid: 579eb024630e714468edcb4162bfeaa4, type: 3}
+      propertyPath: healEnergyManager
       value: 
       objectReference: {fileID: 2733410150316724856}
     - target: {fileID: 6829890576610627708, guid: 579eb024630e714468edcb4162bfeaa4, type: 3}
@@ -14106,22 +14139,25 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87f36f2b35e17624c81243b0b9ec8c21, type: 3}
---- !u!114 &7530265955704033669 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7714285699953190240, guid: 062a7746f11c596479b81d54203c1ff0, type: 3}
-  m_PrefabInstance: {fileID: 3887911351546644126}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2733410150316724856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44059c7186709e5459007d998cf19881, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7530265955704033670 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6201614612993860232, guid: 062a7746f11c596479b81d54203c1ff0, type: 3}
   m_PrefabInstance: {fileID: 3887911351546644126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7530265955704033671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733410150316724856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c55770cd95f2f458c64acb7249a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healBatteryEnergy: 0
+  healcount: 5
 --- !u!1001 &7627123270068408356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14215,6 +14251,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1408598509}
     - target: {fileID: 902455601755800908, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: energyManager
+      value: 
+      objectReference: {fileID: 1408598509}
+    - target: {fileID: 902455601755800908, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: gameManagerScript
       value: 
       objectReference: {fileID: 738859555}
@@ -14222,6 +14262,10 @@ PrefabInstance:
       propertyPath: playerModelsScript
       value: 
       objectReference: {fileID: 651588145}
+    - target: {fileID: 902455601755800908, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: operationTutorialManager
+      value: 
+      objectReference: {fileID: 1469238502}
     - target: {fileID: 1003220739444490003, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -14903,6 +14947,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1408598509}
     - target: {fileID: 5338742562677866396, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: energyManager
+      value: 
+      objectReference: {fileID: 1408598509}
+    - target: {fileID: 5338742562677866396, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: cameraMoveScript
       value: 
       objectReference: {fileID: 636607175}
@@ -15082,6 +15130,10 @@ PrefabInstance:
       propertyPath: healEnargyManager
       value: 
       objectReference: {fileID: 2733410150316724856}
+    - target: {fileID: 6737383653830903219, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: healEnergyManager
+      value: 
+      objectReference: {fileID: 2733410150316724856}
     - target: {fileID: 6799168816726323639, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: selectMenu
       value: 
@@ -15250,6 +15302,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 738859541}
+    - target: {fileID: 7902939199029630088, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: operationTutorialManager
+      value: 
+      objectReference: {fileID: 1469238502}
     - target: {fileID: 8040645812556693443, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: boss
       value: 
@@ -15332,6 +15388,10 @@ PrefabInstance:
       objectReference: {fileID: 95685321}
     - target: {fileID: 8570308683034026287, guid: 77c35af8850608e4d932097efc28345c, type: 3}
       propertyPath: enargyManager
+      value: 
+      objectReference: {fileID: 1408598509}
+    - target: {fileID: 8570308683034026287, guid: 77c35af8850608e4d932097efc28345c, type: 3}
+      propertyPath: energyManager
       value: 
       objectReference: {fileID: 1408598509}
     - target: {fileID: 8570308683034026287, guid: 77c35af8850608e4d932097efc28345c, type: 3}
