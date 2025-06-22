@@ -6,8 +6,8 @@ public class PlayerDamage : MonoBehaviour
     public GameManager gameManagerScript;
     public TutorialCameraMove cameraMoveScript;
     public PlayerStatus playerStatus;
-    private EnergyManager enargyManagerScript;
-    public GameObject enargyManager;
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
 
     public ParticleSystem DamageParticle;
     public ParticleSystem ShieldParticle;
@@ -24,7 +24,7 @@ public class PlayerDamage : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
     }
 
     public void DamageUpdate()
@@ -134,7 +134,7 @@ public class PlayerDamage : MonoBehaviour
             ParticleSystem dmgFx = Instantiate(DamageParticle, transform.position, Quaternion.identity);
             dmgFx.Play();
             Destroy(dmgFx.gameObject, 5f);
-            enargyManagerScript.BatteryEnargyDown();
+            energyManagerScript.BatteryEnergyDown();
         }
 
         playerStatus.isDamaged = true;

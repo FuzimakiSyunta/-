@@ -33,8 +33,6 @@ public class PlayerStatus : MonoBehaviour
         }
     }
 
-
-
     public void SetHp(int value)
     {
         currentHp = Mathf.Clamp(value, 0, maxHp);

@@ -14,10 +14,14 @@ public class OperationTutorialManager : MonoBehaviour
     public GameObject skipImage; // スキップ用のUIイメージ
     public bool isSkip = false; // スキップフラグ
 
+    private EnergyManager energyManagerScript;// エネルギー管理スクリプトの参照
+    public GameObject energyManager; // Inspectorで設定するエネルギー管理オブジェクト
+
     // Start is called before the first frame update
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>(); // エネルギー管理スクリプトの取得
         skipImage.SetActive(false); // 初期状態ではスキップ用のUIイメージを非表示にする
         isSkip = false; // スキップフラグを初期化
     }
@@ -25,7 +29,7 @@ public class OperationTutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameStart()&& TutorialShowTime <= 25.0f&&!isSkip) 
+        if(gameManagerScript.IsGameStart()&& TutorialShowTime <= 32.0f&&!isSkip) 
         {
             isOperationTutorial = true; // ゲーム開始時にチュートリアルを有効化
         }else
@@ -47,10 +51,11 @@ public class OperationTutorialManager : MonoBehaviour
             skipImage.SetActive(false); // チュートリアルが無効化されたらスキップ用のUIイメージを非表示にする
         }
 
-        if (TutorialShowTime >= 25.0f)
+        if (TutorialShowTime >= 32.0f)
         {
             EndOperationTutorial(); // チュートリアルの表示時間が25秒を超えたら終了
             gameManagerScript.GameStart(); // ゲームを開始
+            energyManagerScript.ResetBattery();
         }
 
     }

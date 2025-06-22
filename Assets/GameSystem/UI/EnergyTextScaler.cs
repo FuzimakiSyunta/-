@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnergyTextScaler : MonoBehaviour
 {
-    public TextMeshProUGUI enargyText; // TextMeshProテキスト
+    public TextMeshProUGUI energyText; // TextMeshProテキスト
     private GameManager gameManagerScript;
     public GameObject gameManager;
     private EnergyManager energyManagerScript;
@@ -19,14 +19,14 @@ public class EnergyTextScaler : MonoBehaviour
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
         energyManagerScript = energyManager.GetComponent<EnergyManager>();
-        originalScale = enargyText.transform.localScale;
-        previousEnergy = energyManagerScript.GetBatteryEnargy();
+        originalScale = energyText.transform.localScale;
+        previousEnergy = energyManagerScript.GetBatteryEnergy();
     }
 
     void Update()
     {
-        int currentEnergy = energyManagerScript.GetBatteryEnargy();
-        enargyText.text = currentEnergy.ToString();
+        int currentEnergy = energyManagerScript.GetBatteryEnergy();
+        energyText.text = currentEnergy.ToString();
 
         // 数値が増えた時だけ拡大演出
         if (currentEnergy > previousEnergy)
@@ -44,17 +44,17 @@ public class EnergyTextScaler : MonoBehaviour
             if (t < 0.5f)
             {
                 // 拡大
-                enargyText.transform.localScale = Vector3.Lerp(originalScale, originalScale * 1.4f, t * 2f);
+                energyText.transform.localScale = Vector3.Lerp(originalScale, originalScale * 1.4f, t * 2f);
             }
             else if (t < 1f)
             {
                 // 縮小
-                enargyText.transform.localScale = Vector3.Lerp(originalScale * 1.4f, originalScale, (t - 0.5f) * 2f);
+                energyText.transform.localScale = Vector3.Lerp(originalScale * 1.4f, originalScale, (t - 0.5f) * 2f);
             }
             else
             {
                 // 終了
-                enargyText.transform.localScale = originalScale;
+                energyText.transform.localScale = originalScale;
                 isScaling = false;
             }
         }

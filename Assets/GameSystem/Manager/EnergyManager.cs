@@ -8,10 +8,15 @@ public class EnergyManager : MonoBehaviour
     public int batteryEnergy = 0;
 
     private GameManager gameManagerScript;
+    public GameObject gameManager;
 
     void Start()
     {
         gameManagerScript = GetComponent<GameManager>();
+        if (gameManager != null)
+        {
+            gameManagerScript = gameManager.GetComponent<GameManager>();
+        }
     }
 
     void Update()
@@ -22,23 +27,33 @@ public class EnergyManager : MonoBehaviour
         }
     }
 
-    public void BatteryEnargyUp()
+    public void BatteryEnergyUp()
     {
         batteryEnergy += 1;
     }
 
-    public void BatteryEnargyDown()
+    public void BatteryEnergyDown()
     {
         batteryEnergy -= 2;
     }
 
-    public int GetBatteryEnargy()
+    public void ResetBattery()
+    {
+        batteryEnergy = 0;
+    }
+
+    public int GetBatteryEnergy()
     {
         return batteryEnergy;
     }
-
-    public void ShieldBatteryEnargy()
+    //バッテリー消費
+    public void ReduceBatteryEnergy()
     {
         batteryEnergy -= 30;
+    }
+    //バッテリー加算
+    public void AddBatteryEnergy()
+    {
+        batteryEnergy = 30;
     }
 }

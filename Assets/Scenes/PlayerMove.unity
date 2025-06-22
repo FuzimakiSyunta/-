@@ -1295,7 +1295,7 @@ RectTransform:
   m_GameObject: {fileID: 261420342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 76d0242208183be48b7405a818bd5a2d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   - {fileID: 448879560}
   healStockGage: {fileID: 1678389926}
   pausesystem: {fileID: 1754384288}
-  healEnargyManager: {fileID: 2733410150316724856}
+  healEnergyManager: {fileID: 0}
 --- !u!4 &453539447
 Transform:
   m_ObjectHideFlags: 0
@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25eb775a637a8cc479dee9413524fc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enargyText: {fileID: 487637631}
+  energyText: {fileID: 0}
   gameManager: {fileID: 738859541}
   energyManager: {fileID: 1408598509}
 --- !u!1 &490086181 stripped
@@ -4756,7 +4756,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 51586d2b1749073419bca32d5a4847af, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4783,7 +4783,7 @@ RectTransform:
   m_GameObject: {fileID: 927644989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -5552,7 +5552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7456cdbabced01b4c887b5273b55fee7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5579,7 +5579,7 @@ RectTransform:
   m_GameObject: {fileID: 1019520433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -6760,7 +6760,7 @@ RectTransform:
   m_GameObject: {fileID: 1220603363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -6790,7 +6790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 3f2fcc345240fa641be62c00cb87c682, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7679,9 +7679,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 927644992}
   - {fileID: 1220603364}
   - {fileID: 2107978546}
-  - {fileID: 927644992}
   - {fileID: 1019520436}
   - {fileID: 261420343}
   m_Father: {fileID: 1955221190}
@@ -7924,6 +7924,7 @@ MonoBehaviour:
   ShieldTutorialImage: {fileID: 1019520433}
   operationTutorialManager: {fileID: 1469238502}
   hoverTutorial: {fileID: 1469238502}
+  energyManager: {fileID: 1408598509}
 --- !u!114 &1469238505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7971,6 +7972,7 @@ MonoBehaviour:
   TutorialShowTime: 0
   skipImage: {fileID: 261420342}
   isSkip: 0
+  energyManager: {fileID: 0}
 --- !u!4 &1469238508
 Transform:
   m_ObjectHideFlags: 0
@@ -9845,7 +9847,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5bfe05e0a7239146a00ccf3bf43b4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossMaxHp: 110000
+  bossMaxHp: 80000
   isFinalBattle: 0
   animator: {fileID: 1736841783}
   finalRobot: {fileID: 1942425953}
@@ -11025,8 +11027,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 738859541}
   playerModels: {fileID: 651588144}
-  enargyManager: {fileID: 1408598509}
-  healEnargyManager: {fileID: 2733410150316724856}
+  energyManager: {fileID: 0}
+  healEnergyManager: {fileID: 0}
   boss: {fileID: 1736841748}
   bossBullet: {fileID: 389623457992006024, guid: 362ef3d617463dc4cbbd0a9266f0490c, type: 3}
   TitleUi: {fileID: 0}
@@ -11433,7 +11435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 4363a9a4cc489ba41bf0bd72a53fbfdd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11460,7 +11462,7 @@ RectTransform:
   m_GameObject: {fileID: 2107978543}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 19.2, y: 10.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1413487030}
@@ -11669,7 +11671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 738859541}
   pauseSystem: {fileID: 1754384288}
-  healEnargyManager: {fileID: 2733410150316724856}
+  healEnergyManager: {fileID: 0}
   Stunby: {fileID: 1275758901}
   HealOk: {fileID: 1595329233}
   switchInterval: 0.5
@@ -13071,6 +13073,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8299169261952203884, guid: d0b2dc7866b90a44897de22df621cbae, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 738859541}
     - target: {fileID: 8864571637129723455, guid: d0b2dc7866b90a44897de22df621cbae, type: 3}
       propertyPath: m_Name
       value: EnergyManager

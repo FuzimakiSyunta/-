@@ -5,8 +5,8 @@ public class PlayerShot : MonoBehaviour
     public GameManager gameManagerScript;
     public PlayerModels playerModelsScript;
     public PlayerStatus playerStatus;
-    private EnergyManager enargyManagerScript;
-    public GameObject enargyManager;
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
 
     public GameObject bullet;
     public GameObject machineGun;
@@ -27,39 +27,38 @@ public class PlayerShot : MonoBehaviour
     void Start()
     {
         bulletTimer = new float[3];
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
     }
 
     public void UpdateShotPattern()
     {
-        int energy = enargyManagerScript.GetBatteryEnargy();
-
-        lazerShotChenge = energy >= 20;
+        int energy = energyManagerScript.GetBatteryEnergy();
+        // エナジーに応じてショットパターンを更新
+        lazerShotChenge = energy >= 45;
         if (lazerShotChenge && !isLaserPoweredUp)
         {
             isLaserPoweredUp = true;
             playerStatus.isLaserPoweredUp = true;
         }
 
-        singleShotChenge = energy >= 25;
+        singleShotChenge = energy >= 40;
         if (singleShotChenge && !isSinglePoweredUp)
         {
             isSinglePoweredUp = true;
             playerStatus.isSinglePoweredUp = true;
         }
 
-        penetrationShotChenge = energy >= 30;
+        penetrationShotChenge = energy >= 50;
         if (penetrationShotChenge && !isPenetrationPoweredUp)
         {
             isPenetrationPoweredUp = true;
             playerStatus.isPenetrationPoweredUp = true;
         }
     }
-
     public void HandleFixedUpdate()
     {
         if (!gameManagerScript.IsGameStart()) return;
-
+        // ショットパターン
         int index = playerModelsScript.IsIndex();
 
         if (index == 0)
@@ -84,7 +83,7 @@ public class PlayerShot : MonoBehaviour
             HandlePenetrationShot();
         }
     }
-
+    //単発
     private void HandleSingleShot()
     {
         if (bulletTimer[0] == 0.0f)
@@ -111,7 +110,7 @@ public class PlayerShot : MonoBehaviour
             bulletTimer[1] = 0.0f;
         }
     }
-
+    //貫通弾
     private void HandlePenetrationShot()
     {
         if (bulletTimer[0] == 0.0f)
@@ -128,7 +127,7 @@ public class PlayerShot : MonoBehaviour
             }
             bulletTimer[0] = 1.0f;
         }
-        else if (++bulletTimer[0] > 30.0f)
+        else if (++bulletTimer[0] > 20.0f)
         {
             bulletTimer[0] = 0.0f;
         }

@@ -11,10 +11,14 @@ public class ShieldTutorial : MonoBehaviour
     public GameObject hoverTutorial; // ← HoverTutorial を参照
     private HoverTutorial hoverTutorialScript;
 
+    private EnergyManager energyManagerScript; // EnergyManager を参照
+    public GameObject energyManager; // Inspectorで設定するEnergyManagerオブジェクト
+
     void Start()
     {
         OperationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
         hoverTutorialScript = hoverTutorial.GetComponent<HoverTutorial>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
         if (ShieldTutorialImage != null)
         {
             ShieldTutorialImage.SetActive(false);
@@ -26,7 +30,7 @@ public class ShieldTutorial : MonoBehaviour
         float tutorialShowTime = OperationTutorialManagerScript.GetTutorialShowTime();// 操作チュートリアルの表示時間を取得
 
         // Hover チュートリアルが完了したら表示
-        if (OperationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 18.0f && tutorialShowTime <= 23.0f)
+        if (OperationTutorialManagerScript.IsOperationTutorial() && tutorialShowTime >= 24.0f && tutorialShowTime <= 31.0f)
         {
             ShowShieldTutorial();
         }
@@ -42,6 +46,7 @@ public class ShieldTutorial : MonoBehaviour
         {
             ShieldTutorialImage.SetActive(true);
             OperationTutorialManagerScript.EndOperationTutorial();// 操作チュートリアルを終了
+            energyManagerScript.AddBatteryEnergy();
         }
     }
 

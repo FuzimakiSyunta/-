@@ -5,8 +5,8 @@ public class PlayerHeal : MonoBehaviour
     public GameManager gameManagerScript;
     public PlayerImageUI uiController;
     public PlayerStatus playerStatus;
-    private HealEnargyManager healEnargyManagerScript;
-    public GameObject healEnargyManager;
+    private HealEnergyManager healEnergyManagerScript;
+    public GameObject healEnergyManager;
 
     //ƒvƒŒƒCƒ„[‚ÌÅ‘åHP
     private const int MaxHealHp = 300;
@@ -21,21 +21,21 @@ public class PlayerHeal : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        healEnargyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
+        healEnergyManagerScript = healEnergyManager.GetComponent<HealEnergyManager>();
     }
 
     public void Heal()
     {
         //‚Ü‚¾‰ñ•œ‚Å‚«‚È‚¢
-        if (healEnargyManagerScript.GetHealBatteryEnargy() < 9)
+        if (healEnergyManagerScript.GetHealBatteryEnergy() < 9)
             playerStatus.isHeal = false;
         
-        if (healEnargyManagerScript.GetHealBatteryEnargy() < 9 && playerStatus.isHeal == false)
+        if (healEnergyManagerScript.GetHealBatteryEnergy() < 9 && playerStatus.isHeal == false)
         {
             uiController.SetHealImage(false);
         }
         //‰ñ•œ‚Å‚«‚é
-        if (healEnargyManagerScript.GetHealBatteryEnargy() >= 9 && playerStatus.isHeal == false && playerStatus.GetHp() < MaxHealHp)
+        if (healEnergyManagerScript.GetHealBatteryEnergy() >= 9 && playerStatus.isHeal == false && playerStatus.GetHp() < MaxHealHp)
         {
             uiController.SetHealImage(true);
 
@@ -44,8 +44,8 @@ public class PlayerHeal : MonoBehaviour
                 playerStatus.IncreaseHp(HealAmount);
                 playerStatus.isHeal = true;
                 uiController.SetHealImage(false);
-                healEnargyManagerScript.HealBatteryEnargyReset();
-                healEnargyManagerScript.HealCounter();
+                healEnergyManagerScript.HealBatteryEnergyReset();
+                healEnergyManagerScript.HealCounter();
             }
         }
     }
