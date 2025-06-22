@@ -14,11 +14,9 @@ public class BeamPatternAttack : MonoBehaviour
 
     public GameObject LeftPiller;
     public GameObject RightPiller;
-    public GameObject CenterPiller;
 
     public GameObject LeftQoadAllart;
     public GameObject RightQoadAllart;
-    public GameObject CenterQoadAllart;
 
     private bool started = false;
 
@@ -33,7 +31,7 @@ public class BeamPatternAttack : MonoBehaviour
     void Update()
     {
         // ŠÔ‚É‚æ‚éƒsƒ‰[‚Ì•\¦Ø‘Ö
-        if (!started && gameTimerScript.GetElapsedTime() >= 130)
+        if (!started && gameTimerScript.GetElapsedTime() >= 45)
         {
             DamegePiller.SetActive(true);
             StartCoroutine(SwitchPillers());
@@ -59,19 +57,13 @@ public class BeamPatternAttack : MonoBehaviour
             //Leftƒsƒ‰[‚ÌŒx•UŒ‚
             yield return StartCoroutine(ShowAlertBeforeAttack(LeftQoadAllart));
             LeftPiller.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             LeftPiller.SetActive(false);
-
-            //Centerƒsƒ‰[‚ÌŒx•UŒ‚
-            yield return StartCoroutine(ShowAlertBeforeAttack(CenterQoadAllart));
-            CenterPiller.SetActive(true);
-            yield return new WaitForSeconds(3f);
-            CenterPiller.SetActive(false);
 
             //Rightƒsƒ‰[‚ÌŒx•UŒ‚
             yield return StartCoroutine(ShowAlertBeforeAttack(RightQoadAllart));
             RightPiller.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             RightPiller.SetActive(false);
         }
     }
@@ -96,7 +88,6 @@ public class BeamPatternAttack : MonoBehaviour
     void DisableAllPillers()
     {
         LeftPiller.SetActive(false);
-        CenterPiller.SetActive(false);
         RightPiller.SetActive(false);
     }
 }

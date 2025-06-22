@@ -6,8 +6,8 @@ public class PlayerDamage : MonoBehaviour
     public GameManager gameManagerScript;
     public TutorialCameraMove cameraMoveScript;
     public PlayerStatus playerStatus;
-    private EnergyManager enargyManagerScript;
-    public GameObject enargyManager;
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
 
     public ParticleSystem DamageParticle;
     public ParticleSystem ShieldParticle;
@@ -24,7 +24,7 @@ public class PlayerDamage : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
     }
 
     public void DamageUpdate()
@@ -45,11 +45,11 @@ public class PlayerDamage : MonoBehaviour
                 switch (tag)
                 {
                     // EnemyBullet, BossBullet, BossExtraBullet, RobotBullet, FinalBomm などのタグに応じてダメージを与える
-                    case "EnemyBullet": playerStatus.DecreaseHp(10); break;
+                    case "EnemyBullet": playerStatus.DecreaseHp(20); break;
                     case "BossBullet": playerStatus.DecreaseHp(20); break;
-                    case "BossExtraBullet": playerStatus.DecreaseHp(8); break;
-                    case "RobotBullet": playerStatus.DecreaseHp(20); break;
-                    case "FinalBomm": playerStatus.DecreaseHp(100); break;
+                    case "BossExtraBullet": playerStatus.DecreaseHp(30); break;
+                    case "RobotBullet": playerStatus.DecreaseHp(15); break;
+                    case "FinalBomm": playerStatus.DecreaseHp(150); break;
                 }
 
                 playerStatus.tookDamage = true;
@@ -84,7 +84,7 @@ public class PlayerDamage : MonoBehaviour
             {
                 if (damageTimer >= damageCooldown)
                 {
-                    if (other.CompareTag("Lazer")) playerStatus.DecreaseHp(4);
+                    if (other.CompareTag("Lazer")) playerStatus.DecreaseHp(8);
                     else if (other.CompareTag("FinalLazer")) playerStatus.DecreaseHp(6);
                     damageTimer = 0f;
                 }
@@ -134,7 +134,7 @@ public class PlayerDamage : MonoBehaviour
             ParticleSystem dmgFx = Instantiate(DamageParticle, transform.position, Quaternion.identity);
             dmgFx.Play();
             Destroy(dmgFx.gameObject, 5f);
-            enargyManagerScript.BatteryEnargyDown();
+            energyManagerScript.BatteryEnergyDown();
         }
 
         playerStatus.isDamaged = true;

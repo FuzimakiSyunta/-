@@ -21,21 +21,26 @@ public class SceneScript : MonoBehaviour
 
     void Update()
     {
-        // isTitleBackがtrueの場合にLoadシーンへ移動
+        // タイトルに戻るとき
         if (pauseMenuSelectorScript.IsTitleBack())
         {
+            PlayerPrefs.SetInt("TutorialDone", 1);
+            PlayerPrefs.Save();
+
             SceneManager.LoadScene("Load");
         }
 
-        
-
-        // ゲームクリア処理
-        if (gameManagerScript.IsGameClear()&& ResultScript.IsRankOpen())
+        // ゲームクリア時にスペースキーでシーン切り替え
+        if (gameManagerScript.IsGameClear() && ResultScript.IsRankOpen())
         {
             if (Input.GetKey(KeyCode.Space) || Input.GetKeyDown("joystick button 0"))
             {
+                PlayerPrefs.SetInt("TutorialDone", 1);
+                PlayerPrefs.Save();
+
                 SceneManager.LoadScene("Load");
             }
         }
     }
+
 }
