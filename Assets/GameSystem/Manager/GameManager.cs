@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public bool GameStartFlag = false;
 
     // 他マネージャー参照
-    [SerializeField] private HealEnargyManager healEnargyManager;
+    [SerializeField] private HealEnergyManager healEnergyManager;
     [SerializeField] private EnergyManager energyManager;
     [SerializeField] private WaveManager waveManager;
 

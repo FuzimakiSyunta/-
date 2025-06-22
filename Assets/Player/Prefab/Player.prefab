@@ -5232,7 +5232,7 @@ MonoBehaviour:
   gameManagerScript: {fileID: 0}
   cameraMoveScript: {fileID: 0}
   playerStatus: {fileID: 2882873818848932672}
-  enargyManager: {fileID: 0}
+  energyManager: {fileID: 0}
   DamageParticle: {fileID: 1368096948050383225, guid: 3ada173266172004db3186964ca40d49, type: 3}
   ShieldParticle: {fileID: 4420587825053408745, guid: 7522fe0e5fc93f84dacb520de3a80b93, type: 3}
   DamegeSound: {fileID: 8300000, guid: 526bb23ad0368a749be2520704ae9585, type: 3}
@@ -5254,7 +5254,7 @@ MonoBehaviour:
   gameManagerScript: {fileID: 0}
   uiController: {fileID: 3493381398055227582}
   playerStatus: {fileID: 2882873818848932672}
-  healEnargyManager: {fileID: 0}
+  healEnergyManager: {fileID: 0}
   healSound: {fileID: 0}
   healEffect: {fileID: 0}
 --- !u!114 &6361591199195888951
@@ -5351,7 +5351,7 @@ MonoBehaviour:
   Shield: {fileID: 8098870855660800575}
   gameManagerScript: {fileID: 0}
   playerStatus: {fileID: 2882873818848932672}
-  enargyManager: {fileID: 0}
+  energyManager: {fileID: 0}
 --- !u!114 &902455601755800908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5367,7 +5367,7 @@ MonoBehaviour:
   gameManagerScript: {fileID: 0}
   playerModelsScript: {fileID: 0}
   playerStatus: {fileID: 2882873818848932672}
-  enargyManager: {fileID: 0}
+  energyManager: {fileID: 0}
   bullet: {fileID: 679023749104929143, guid: 9089c5322e9abeb49980d02a5c4cabfb, type: 3}
   machineGun: {fileID: 4932371020863500020, guid: c693d708a39a6024d98cc4adc8e8a46f, type: 3}
   Lazer: {fileID: 9152923115028369428}

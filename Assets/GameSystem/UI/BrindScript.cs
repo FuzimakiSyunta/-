@@ -9,12 +9,12 @@ public class BrindScript : MonoBehaviour
     //models
     private PlayerModels playerModelsScript;
     public GameObject playerModels;
-    //enargy
-    private EnergyManager enargyManagerScript;
-    public GameObject enargyManager;
-    //healEnargy
-    private HealEnargyManager healEnargyManagerScript;
-    public GameObject healEnargyManager;
+    //energy
+    private EnergyManager energyManagerScript;
+    public GameObject energyManager;
+    //healEnergy
+    private HealEnergyManager healEnergyManagerScript;
+    public GameObject healEnergyManager;
 
     // Boss
     public GameObject boss;
@@ -47,10 +47,10 @@ public class BrindScript : MonoBehaviour
         gameManagerScript = gameManager.GetComponent<GameManager>();
         //playerModels
         playerModelsScript = playerModels.GetComponent<PlayerModels>();
-        //enargy
-        enargyManagerScript = enargyManager.GetComponent<EnergyManager>();
-        //healEnargy
-        healEnargyManagerScript = healEnargyManager.GetComponent<HealEnargyManager>();
+        //energy
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
+        //healEnergy
+        healEnergyManagerScript = healEnergyManager.GetComponent<HealEnergyManager>();
         // Initialize Elements
         SetActiveForObjects(false, boss, bossBullet, StartUi, PushAGameOver, OptionButton, AllEnergy);
         PowerUpImage.SetActive(false); // 個別に制御
@@ -76,7 +76,7 @@ public class BrindScript : MonoBehaviour
                 AllEnergy = null;
             }
 
-            if (healEnargyManagerScript.GetHealBatteryEnargy() <= 2 && !gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
+            if (healEnergyManagerScript.GetHealBatteryEnergy() <= 2 && !gameManagerScript.IsGameClear() && !gameManagerScript.IsGameOver())
             {
                 EnergyMIN.SetActive(false);
                 EnergyMID.SetActive(false);
@@ -97,7 +97,7 @@ public class BrindScript : MonoBehaviour
         //回復UIロジック/////////////////////////////////////////////////////////////////////////////////////////////////
         if (playerModelsScript.IsIndex() == 0 || playerModelsScript.IsIndex() == 1 || playerModelsScript.IsIndex() == 2)
         {
-            int healBatteryEnergy = healEnargyManagerScript.GetHealBatteryEnargy();
+            int healBatteryEnergy = healEnergyManagerScript.GetHealBatteryEnergy();
 
             // エネルギー状態を切り替え
             UpdateEnergyState(healBatteryEnergy);
@@ -163,7 +163,7 @@ public class BrindScript : MonoBehaviour
             if (playerModelsScript.IsIndex() == 0)
             {
 
-                if (enargyManagerScript.GetBatteryEnargy() >= 25 && !hasPowerUpImageBeenHidden)
+                if (energyManagerScript.GetBatteryEnergy() >= 32 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);
@@ -177,7 +177,7 @@ public class BrindScript : MonoBehaviour
             if (playerModelsScript.IsIndex() == 1)
             {
 
-                if (enargyManagerScript.GetBatteryEnargy() >= 20 && !hasPowerUpImageBeenHidden)
+                if (energyManagerScript.GetBatteryEnergy() >= 35 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);
@@ -191,7 +191,7 @@ public class BrindScript : MonoBehaviour
             if (playerModelsScript.IsIndex() == 2)
             {
 
-                if (enargyManagerScript.GetBatteryEnargy() >= 30 && !hasPowerUpImageBeenHidden)
+                if (energyManagerScript.GetBatteryEnergy() >= 38 && !hasPowerUpImageBeenHidden)
                 {
 
                     PowerUpImage.SetActive(true);
