@@ -11,7 +11,10 @@ public class PlayerManager : MonoBehaviour
     private PlayerImageUI playerImageUI;
 
     private GameManager gameManagerScript;
-    public GameObject gameManager; // Å© InspectorÇ≈ê›íËïKóv
+    public GameObject gameManager; 
+
+    private OperationTutorialManager operationTutorialManagerScript;
+    public GameObject operationTutorialManager;
 
     void Start()
     {
@@ -22,6 +25,7 @@ public class PlayerManager : MonoBehaviour
         playerDamage = GetComponent<PlayerDamage>();
         playerHeal = GetComponent<PlayerHeal>();
         playerImageUI = GetComponent<PlayerImageUI>();
+        operationTutorialManagerScript = operationTutorialManager.GetComponent<OperationTutorialManager>();
 
         if (gameManager != null)
             gameManagerScript = gameManager.GetComponent<GameManager>();
@@ -36,7 +40,8 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        if (gameManagerScript.IsGameStart())
+        //操作チュートリアル中またはゲーム開始時のみ操作を受け付ける
+        if (operationTutorialManagerScript.IsOperationTutorial()||gameManagerScript.IsGameStart())
         {
             if (playerMove != null)
             {
@@ -47,21 +52,19 @@ public class PlayerManager : MonoBehaviour
             {
                 playerHover.Hover();
             }
+            if (playerShield != null)
+            {
+                playerShield.TryActivateShield();
+            }
+            if (playerShot != null)
+            {
+                playerShot.UpdateShotPattern();
+            }
         }
 
         if (playerImageUI != null)
         {
             playerImageUI.UpdateUI();
-        }
-
-        if (playerShot != null)
-        {
-            playerShot.UpdateShotPattern();
-        }
-
-        if (playerShield != null)
-        {
-            playerShield.TryActivateShield();
         }
 
         if (playerDamage != null)

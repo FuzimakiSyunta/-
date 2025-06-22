@@ -1,71 +1,115 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+ï»¿using UnityEngine;
+
 
 public class OperationTutorialManager : MonoBehaviour
 {
-    private GameManager gameManagerScript; // GameManager‚ÌƒXƒNƒŠƒvƒg‚ğQÆ‚·‚é‚½‚ß‚Ì•Ï”
-    public GameObject gameManager; // Inspector‚Åİ’è‚·‚éGameManagerƒIƒuƒWƒFƒNƒg
+    private GameManager gameManagerScript;
+    public GameObject gameManager;
 
-    public bool isOperationTutorial = false; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ªƒAƒNƒeƒBƒu‚©‚Ç‚¤‚©‚ğ¦‚·ƒtƒ‰ƒO
+    public bool isOperationTutorial = false;
+    public float TutorialShowTime = 0.0f;
 
-    public float TutorialShowTime = 0.0f; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ì•\¦ŠÔ‚ğŠÇ—‚·‚é•Ï”
+    public GameObject skipImage;
+    private bool hasShownSkipUI = false;
 
-    public GameObject skipImage; // ƒXƒLƒbƒv—p‚ÌUIƒCƒ[ƒW
-    public bool isSkip = false; // ƒXƒLƒbƒvƒtƒ‰ƒO
+    public GameObject energyManager;
+    private EnergyManager energyManagerScript;
 
-    // Start is called before the first frame update
+    private bool isSkippable = false;
+    private bool hasCompleted = false;
+
+    // Appèµ·å‹•ç›´å¾Œã‹ã©ã†ã‹åˆ¤å®šç”¨
+    private static bool isAppLaunched = false;
+
     void Start()
     {
         gameManagerScript = gameManager.GetComponent<GameManager>();
-        skipImage.SetActive(false); // ‰Šúó‘Ô‚Å‚ÍƒXƒLƒbƒv—p‚ÌUIƒCƒ[ƒW‚ğ”ñ•\¦‚É‚·‚é
-        isSkip = false; // ƒXƒLƒbƒvƒtƒ‰ƒO‚ğ‰Šú‰»
+        energyManagerScript = energyManager.GetComponent<EnergyManager>();
+
+        // åˆå›èµ·å‹•ã‹ã©ã†ã‹ã‚’ç¢ºèª
+        if (!isAppLaunched)
+        {
+            PlayerPrefs.DeleteKey("TutorialDone");
+            PlayerPrefs.Save();
+            isAppLaunched = true;
+            Debug.Log("ã‚¢ãƒ—ãƒªåˆå›èµ·å‹•æ™‚ã«TutorialDoneã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã—ãŸ");
+        }
+
+
+        skipImage.SetActive(false);
+        TutorialShowTime = 0f;
+        hasShownSkipUI = false;
+        hasCompleted = false;
+
+        isOperationTutorial = false;
+        isSkippable = false; // â† åˆå›å‰æã§false
+        Debug.Log("åˆå›èµ·å‹•ã‹ã©ã†ã‹: " + (PlayerPrefs.GetInt("TutorialDone", 0) == 0));
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(gameManagerScript.IsGameStart()&& TutorialShowTime <= 25.0f&&!isSkip) 
-        {
-            isOperationTutorial = true; // ƒQ[ƒ€ŠJn‚Éƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğ—LŒø‰»
-        }else
-        {
-            isOperationTutorial = false; // ƒQ[ƒ€ŠJnŒã‚Íƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğ–³Œø‰»
-        }
-        if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 2")) && isOperationTutorial)
-        {
-            isSkip = true; // EƒL[‚Ü‚½‚ÍƒWƒ‡ƒCƒXƒeƒBƒbƒN‚Ìƒ{ƒ^ƒ“2‚ª‰Ÿ‚³‚ê‚½‚çƒXƒLƒbƒvƒtƒ‰ƒO‚ğ—LŒø‰»
-        }
+        if (!isOperationTutorial) return;
 
-        if (isOperationTutorial)
-        {
-            TutorialShowTime += Time.deltaTime; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ì•\¦ŠÔ‚ğXV
-            skipImage.SetActive(true); // ƒXƒLƒbƒv—p‚ÌUIƒCƒ[ƒW‚ğ•\¦‚·‚é
-        }
-        else
-        {
-            skipImage.SetActive(false); // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ª–³Œø‰»‚³‚ê‚½‚çƒXƒLƒbƒv—p‚ÌUIƒCƒ[ƒW‚ğ”ñ•\¦‚É‚·‚é
-        }
+        TutorialShowTime += Time.deltaTime;
 
-        if (TutorialShowTime >= 25.0f)
+        // ã‚¹ã‚­ãƒƒãƒ—UIè¡¨ç¤ºï¼ˆ2å›ç›®ä»¥é™ã®ã¿ï¼‰
+        if (isSkippable && !hasShownSkipUI)
         {
-            EndOperationTutorial(); // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ì•\¦ŠÔ‚ª25•b‚ğ’´‚¦‚½‚çI—¹
-            gameManagerScript.GameStart(); // ƒQ[ƒ€‚ğŠJn
+            skipImage.SetActive(true);
+            hasShownSkipUI = true;
         }
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            PlayerPrefs.DeleteKey("TutorialDone");
+            PlayerPrefs.Save();
+            Debug.Log("TutorialDone ã‚’ãƒªã‚»ãƒƒãƒˆã—ã¾ã—ãŸï¼ˆæ¬¡å›ã¯åˆå›ã¨ã—ã¦æ‰±ã‚ã‚Œã¾ã™ï¼‰");
+        }
+#endif
 
+        // ã‚¹ã‚­ãƒƒãƒ—æ“ä½œï¼ˆ2å›ç›®ä»¥é™ã®ã¿ï¼‰
+        if (isSkippable && (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown("joystick button 1")))
+        {
+            Debug.Log("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã‚’ã‚¹ã‚­ãƒƒãƒ—ã—ã¾ã—ãŸ");
+            CompleteTutorial();
+        }
+    }
+
+    public void StartOperationTutorial()
+    {
+        isOperationTutorial = true;
+        TutorialShowTime = 0f;
+        hasShownSkipUI = false;
+        skipImage.SetActive(false);
+
+        // ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«å®Œäº†æ¸ˆã¿ãªã‚‰ã‚¹ã‚­ãƒƒãƒ—å¯èƒ½ã«ã™ã‚‹
+        isSkippable = PlayerPrefs.GetInt("TutorialDone", 0) == 1;
+
+        Debug.Log("æ“ä½œãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«ã‚’é–‹å§‹ã—ã¾ã—ãŸï¼ˆisSkippable: " + isSkippable + ")");
+    }
+
+    public void CompleteTutorial()
+    {
+        if (!isOperationTutorial || hasCompleted) return;
+
+        isOperationTutorial = false;
+        skipImage.SetActive(false);
+        hasCompleted = true;
+
+        energyManagerScript.ResetBattery();
+        gameManagerScript.GameStart();
+
+        // â€»ã“ã“ã§ã¯ PlayerPrefs ã¯æ›¸ãè¾¼ã¾ãªã„ï¼ˆã‚·ãƒ¼ãƒ³åˆ‡ã‚Šæ›¿ãˆæ™‚ã«ä¿å­˜ã™ã‚‹ï¼‰
+        Debug.Log("ãƒãƒ¥ãƒ¼ãƒˆãƒªã‚¢ãƒ«çµ‚äº† â†’ ã‚²ãƒ¼ãƒ é–‹å§‹");
     }
 
     public bool IsOperationTutorial()
     {
         return isOperationTutorial;
     }
-    public void EndOperationTutorial()
-    {
-        isOperationTutorial = false; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚ğI—¹
-        Debug.Log("‘€ìƒ`ƒ…[ƒgƒŠƒAƒ‹‚ªI—¹‚µ‚Ü‚µ‚½B");
-    }
+
     public float GetTutorialShowTime()
     {
-        return TutorialShowTime; // ƒ`ƒ…[ƒgƒŠƒAƒ‹‚Ì•\¦ŠÔ‚ğ•Ô‚·
+        return TutorialShowTime;
     }
 }
